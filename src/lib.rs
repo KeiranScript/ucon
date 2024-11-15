@@ -1,14 +1,22 @@
-pub mod length;
-pub mod temperature;
-pub mod time;
-pub mod volume;
-pub mod weight;
+pub mod measurements {
+    pub mod area;
+    pub mod data_storage;
+    pub mod length;
+    pub mod speed;
+    pub mod temperature;
+    pub mod time;
+    pub mod volume;
+    pub mod weight;
+}
 
-pub use length::Length;
-pub use temperature::Temperature;
-pub use time::Time;
-pub use volume::Volume;
-pub use weight::Weight;
+pub use measurements::area::Area;
+pub use measurements::data_storage::DataStorage;
+pub use measurements::length::Length;
+pub use measurements::speed::Speed;
+pub use measurements::temperature::Temperature;
+pub use measurements::time::Time;
+pub use measurements::volume::Volume;
+pub use measurements::weight::Weight;
 
 #[derive(Debug)]
 pub enum ConversionError {
