@@ -23,6 +23,16 @@ impl Length {
             _ => Err(ConversionError::ConversionNotPossible),
         }
     }
+
+    pub fn to_miles(&self) -> Result<f64, ConversionError> {
+        match self {
+            Length::Meter(value) => Ok(value * 0.000621371),
+            Length::Kilometer(value) => Ok(value * 0.621371),
+            Length::Centimeter(value) => Ok(value * 0.0000062137),
+            Length::Inch(value) => Ok(value * 0.0000157828),
+            Length::Foot(value) => Ok(value * 0.000189394),
+        }
+    }
 }
 
 impl fmt::Display for Length {

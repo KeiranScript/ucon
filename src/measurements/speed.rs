@@ -19,6 +19,14 @@ impl Speed {
             _ => Err(ConversionError::ConversionNotPossible),
         }
     }
+
+    pub fn to_knots(&self) -> Result<f64, ConversionError> {
+        match self {
+            Speed::MeterPerSecond(value) => Ok(value * 1.94384),
+            Speed::KilometerPerHour(value) => Ok(value * 0.539957),
+            Speed::MilePerHour(value) => Ok(value * 0.868976),
+        }
+    }
 }
 
 impl fmt::Display for Speed {

@@ -23,6 +23,16 @@ impl Data {
             _ => Err(ConversionError::ConversionNotPossible),
         }
     }
+
+    pub fn to_bits(&self) -> Result<f64, ConversionError> {
+        match self {
+            Data::Byte(value) => Ok(value * 8.0),
+            Data::Kilobyte(value) => Ok(value * 8_192.0),
+            Data::Megabyte(value) => Ok(value * 8_388_608.0),
+            Data::Gigabyte(value) => Ok(value * 8_589_934_592.0),
+            Data::Terabyte(value) => Ok(value * 8_796_093_022_208.0),
+        }
+    }
 }
 
 impl fmt::Display for Data {

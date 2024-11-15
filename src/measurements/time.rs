@@ -21,6 +21,15 @@ impl Time {
             _ => Err(ConversionError::ConversionNotPossible),
         }
     }
+
+    pub fn to_milliseconds(&self) -> Result<f64, ConversionError> {
+        match self {
+            Time::Second(value) => Ok(value * 1000.0),
+            Time::Minute(value) => Ok(value * 60_000.0),
+            Time::Hour(value) => Ok(value * 3_600_000.0),
+            Time::Day(value) => Ok(value * 86_400_000.0),
+        }
+    }
 }
 
 impl fmt::Display for Time {

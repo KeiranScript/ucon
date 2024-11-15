@@ -19,6 +19,14 @@ impl Area {
             _ => Err(ConversionError::ConversionNotPossible),
         }
     }
+
+    pub fn to_square_feet(&self) -> Result<f64, ConversionError> {
+        match self {
+            Area::SquareMeter(value) => Ok(value * 10.7639),
+            Area::SquareKilometer(value) => Ok(value * 1.076e+7),
+            Area::SquareMile(value) => Ok(value * 2.788e+7),
+        }
+    }
 }
 
 impl fmt::Display for Area {

@@ -21,6 +21,15 @@ impl Volume {
             _ => Err(ConversionError::ConversionNotPossible),
         }
     }
+
+    pub fn to_gallons(&self) -> Result<f64, ConversionError> {
+        match self {
+            Volume::Liter(value) => Ok(value * 0.264172),
+            Volume::Milliliter(value) => Ok(value * 0.000264172),
+            Volume::CubicMeter(value) => Ok(value * 264.172),
+            Volume::CubicCentimeter(value) => Ok(value * 0.000264172),
+        }
+    }
 }
 
 impl fmt::Display for Volume {

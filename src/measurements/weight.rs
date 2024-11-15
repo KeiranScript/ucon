@@ -21,6 +21,15 @@ impl Weight {
             _ => Err(ConversionError::ConversionNotPossible),
         }
     }
+
+    pub fn to_stones(&self) -> Result<f64, ConversionError> {
+        match self {
+            Weight::Kilogram(value) => Ok(value * 0.157473),
+            Weight::Gram(value) => Ok(value * 0.000157473),
+            Weight::Pound(value) => Ok(value * 0.0714286),
+            Weight::Ounce(value) => Ok(value * 0.00446429),
+        }
+    }
 }
 
 impl fmt::Display for Weight {
