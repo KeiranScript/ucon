@@ -1,3 +1,4 @@
+use crate::ConversionError;
 use std::fmt;
 
 #[derive(Debug, PartialEq)]
@@ -8,14 +9,14 @@ pub enum Speed {
 }
 
 impl Speed {
-    pub fn convert_to(&self, target_unit: &Speed) -> Result<Speed, super::ConversionError> {
+    pub fn convert_to(&self, target_unit: &Speed) -> Result<Speed, ConversionError> {
         match self {
             Speed::MeterPerSecond(value) => match target_unit {
                 Speed::KilometerPerHour(_) => Ok(Speed::KilometerPerHour(value * 3.6)),
                 Speed::MilePerHour(_) => Ok(Speed::MilePerHour(value * 2.23694)),
-                _ => Err(super::ConversionError::ConversionNotPossible),
+                _ => Err(ConversionError::ConversionNotPossible),
             },
-            _ => Err(super::ConversionError::ConversionNotPossible),
+            _ => Err(ConversionError::ConversionNotPossible),
         }
     }
 }

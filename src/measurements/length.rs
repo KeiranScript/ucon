@@ -1,3 +1,4 @@
+use crate::ConversionError;
 use std::fmt;
 
 #[derive(Debug, PartialEq)]
@@ -10,16 +11,16 @@ pub enum Length {
 }
 
 impl Length {
-    pub fn convert_to(&self, target_unit: &Length) -> Result<Length, super::ConversionError> {
+    pub fn convert_to(&self, target_unit: &Length) -> Result<Length, ConversionError> {
         match self {
             Length::Meter(value) => match target_unit {
                 Length::Kilometer(_) => Ok(Length::Kilometer(value / 1000.0)),
                 Length::Centimeter(_) => Ok(Length::Centimeter(value * 100.0)),
                 Length::Inch(_) => Ok(Length::Inch(value * 39.3701)),
                 Length::Foot(_) => Ok(Length::Foot(value * 3.28084)),
-                _ => Err(super::ConversionError::ConversionNotPossible),
+                _ => Err(ConversionError::ConversionNotPossible),
             },
-            _ => Err(super::ConversionError::ConversionNotPossible),
+            _ => Err(ConversionError::ConversionNotPossible),
         }
     }
 }

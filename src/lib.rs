@@ -1,6 +1,6 @@
 pub mod measurements {
     pub mod area;
-    pub mod data_storage;
+    pub mod data;
     pub mod length;
     pub mod speed;
     pub mod temperature;
@@ -10,7 +10,7 @@ pub mod measurements {
 }
 
 pub use measurements::area::Area;
-pub use measurements::data_storage::DataStorage;
+pub use measurements::data::Data;
 pub use measurements::length::Length;
 pub use measurements::speed::Speed;
 pub use measurements::temperature::Temperature;

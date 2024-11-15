@@ -1,3 +1,4 @@
+use crate::ConversionError;
 use std::fmt;
 
 #[derive(Debug, PartialEq)]
@@ -8,14 +9,14 @@ pub enum Area {
 }
 
 impl Area {
-    pub fn convert_to(&self, target_unit: &Area) -> Result<Area, super::ConversionError> {
+    pub fn convert_to(&self, target_unit: &Area) -> Result<Area, ConversionError> {
         match self {
             Area::SquareMeter(value) => match target_unit {
                 Area::SquareKilometer(_) => Ok(Area::SquareKilometer(value / 1_000_000.0)),
                 Area::SquareMile(_) => Ok(Area::SquareMile(value / 2_589_988.11)),
-                _ => Err(super::ConversionError::ConversionNotPossible),
+                _ => Err(ConversionError::ConversionNotPossible),
             },
-            _ => Err(super::ConversionError::ConversionNotPossible),
+            _ => Err(ConversionError::ConversionNotPossible),
         }
     }
 }

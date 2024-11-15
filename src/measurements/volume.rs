@@ -1,3 +1,4 @@
+use crate::ConversionError;
 use std::fmt;
 
 #[derive(Debug, PartialEq)]
@@ -9,16 +10,15 @@ pub enum Volume {
 }
 
 impl Volume {
-    pub fn convert_to(&self, target_unit: &Volume) -> Result<Volume, super::ConversionError> {
+    pub fn convert_to(&self, target_unit: &Volume) -> Result<Volume, ConversionError> {
         match self {
             Volume::Liter(value) => match target_unit {
                 Volume::Milliliter(_) => Ok(Volume::Milliliter(value * 1000.0)),
                 Volume::CubicMeter(_) => Ok(Volume::CubicMeter(value / 1000.0)),
                 Volume::CubicCentimeter(_) => Ok(Volume::CubicCentimeter(value * 1000.0)),
-                _ => Err(super::ConversionError::ConversionNotPossible),
+                _ => Err(ConversionError::ConversionNotPossible),
             },
-            // Add other conversions here
-            _ => Err(super::ConversionError::ConversionNotPossible),
+            _ => Err(ConversionError::ConversionNotPossible),
         }
     }
 }

@@ -1,3 +1,4 @@
+use crate::ConversionError;
 use std::fmt;
 
 #[derive(Debug, PartialEq)]
@@ -9,15 +10,15 @@ pub enum Time {
 }
 
 impl Time {
-    pub fn convert_to(&self, target_unit: &Time) -> Result<Time, super::ConversionError> {
+    pub fn convert_to(&self, target_unit: &Time) -> Result<Time, ConversionError> {
         match self {
             Time::Second(value) => match target_unit {
                 Time::Minute(_) => Ok(Time::Minute(value / 60.0)),
                 Time::Hour(_) => Ok(Time::Hour(value / 3600.0)),
                 Time::Day(_) => Ok(Time::Day(value / 86400.0)),
-                _ => Err(super::ConversionError::ConversionNotPossible),
+                _ => Err(ConversionError::ConversionNotPossible),
             },
-            _ => Err(super::ConversionError::ConversionNotPossible),
+            _ => Err(ConversionError::ConversionNotPossible),
         }
     }
 }
