@@ -1,4 +1,4 @@
-use ucon::{Length, Weight};
+use ucon::{Length, Temperature, Time, Volume, Weight};
 
 #[test]
 fn test_length_conversion() {
@@ -20,14 +20,31 @@ fn test_weight_conversion() {
 }
 
 #[test]
-fn test_invalid_conversion() {
-    let meter = Length::Meter(1.0);
-    let kilogram = Weight::Kilogram(1.0);
+fn test_temperature_conversion() {
+    let celsius = Temperature::Celsius(25.0);
+    let fahrenheit = Temperature::Fahrenheit(77.0);
 
     assert_eq!(
-        meter.convert_to(&Length::Kilometer(0.0)).unwrap(),
-        Length::Kilometer(0.001)
+        celsius.convert_to(&Temperature::Fahrenheit(0.0)).unwrap(),
+        fahrenheit
     );
-    assert!(meter.convert_to(&Length::Foot(0.0)).is_ok());
-    assert!(kilogram.convert_to(&Weight::Pound(0.0)).is_ok());
+}
+
+#[test]
+fn test_volume_conversion() {
+    let liter = Volume::Liter(1.0);
+    let milliliter = Volume::Milliliter(1000.0);
+
+    assert_eq!(
+        liter.convert_to(&Volume::Milliliter(0.0)).unwrap(),
+        milliliter
+    );
+}
+
+#[test]
+fn test_time_conversion() {
+    let second = Time::Second(3600.0);
+    let hour = Time::Hour(1.0);
+
+    assert_eq!(second.convert_to(&Time::Hour(0.0)).unwrap(), hour);
 }
