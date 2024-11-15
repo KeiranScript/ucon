@@ -2,5 +2,12 @@
 name = "ucon"
 version = "0.1.0"
 edition = "2021"
+description = "A simple unit conversion library"
+license = "MIT"
+authors = ["Keiran keiran0@proton.me"]
+repository = "https://github.com/KeiranScript/ucon"
+documentation = "https://docs.rs/ucon"
+homepage = "https://keiran.cc/ucon"
+readme = "README.md"
 
 [dependencies]
